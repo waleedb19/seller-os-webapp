@@ -394,6 +394,9 @@ function Modal({ open, title, children, onClose }) {
           <div style={{ fontSize: 18, fontWeight: 900 }}>{title}</div>
           <button style={styles.btn(false)} onClick={onClose}>
             Close
+            <button style={styles.btn(true)} onClick={() => (window.location.href = PAY_LINK)}>
+  Buy Access
+</button>
           </button>
         </div>
         <div style={{ height: 10 }} />
@@ -1532,6 +1535,10 @@ function Expenses({ data, setData }) {
 export default function App() {
   const [data, setData] = useStoredState();
   const [tab, setTab] = useState("dashboard");
+  const PAY_LINK = "https://buy.stripe.com/7sY28kabRbLQgyhe0Lak000";
+  const [unlocked, setUnlocked] = useState(() => localStorage.getItem("seller_os_unlocked") === "1");
+
+
 
   return (
     <div style={styles.page}>
@@ -1584,6 +1591,41 @@ export default function App() {
 
         <div style={{ marginTop: 16, fontSize: 12, color: "#9fb0c3" }}>
           Next step (when you’re ready): add user logins + database so it works across devices.
+        </div>
+      </div>
+    </div>
+  );
+}
+if (!unlocked) {
+  return (
+    <div style={styles.page}>
+      <div style={styles.container}>
+        <div style={styles.card}>
+          <h1 style={{ margin: 0, fontSize: 30, fontWeight: 950 }}>Seller OS</h1>
+          <p style={styles.hint}>
+            Purchase access to unlock the app.
+          </p>
+
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 12 }}>
+            <button style={styles.btn(true)} onClick={() => (window.location.href = PAY_LINK)}>
+              Buy Access
+            </button>
+
+            <button
+              style={styles.btn(false)}
+              onClick={() => {
+                // temporary manual unlock (for you/testing)
+                localStorage.setItem("seller_os_unlocked", "1");
+                setUnlocked(true);
+              }}
+            >
+              I already paid (unlock)
+            </button>
+          </div>
+
+          <p style={{ ...styles.hint, marginTop: 12 }}>
+            Next upgrade: automatic unlock with login + Stripe webhook (real paywall).
+          </p>
         </div>
       </div>
     </div>
