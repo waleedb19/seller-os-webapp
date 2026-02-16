@@ -162,7 +162,7 @@ function calcInventoryDerived(i) {
 }
 
 const starter = {
-  brandName: "Seller Operating System",
+  brandName: "ANW Seller OS",
   products: [
     {
       id: uid(),
@@ -170,7 +170,7 @@ const starter = {
       channel: "Amazon",
       sku: "SKU-001",
       asin: "B000TEST",
-      productName: "Example Product",
+      productName: "",
       qtySold: 1,
       sellPrice: 19.99,
       buyCost: 9.5,
@@ -184,7 +184,7 @@ const starter = {
     {
       id: uid(),
       sku: "SKU-001",
-      productName: "Example Product",
+      productName: "",
       supplier: "Supplier Ltd",
       currentStock: 25,
       avgDailySales: 1,
@@ -195,7 +195,7 @@ const starter = {
   suppliers: [
     {
       id: uid(),
-      supplierName: "Example Supplier",
+      supplierName: "",
       contact: "John Smith",
       email: "supplier@email.com",
       phone: "",
@@ -208,7 +208,7 @@ const starter = {
     {
       id: uid(),
       date: todayISO(),
-      description: "Example expense",
+      description: "",
       category: "Software",
       amount: 19.99,
     },
@@ -841,9 +841,6 @@ function Dashboard({ data, setData }) {
           </div>
         </div>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-          <button style={styles.btn(false)} onClick={() => setData(starter)}>
-            <RefreshCcw size={16} /> Reset demo
-          </button>
         </div>
       </div>
 
